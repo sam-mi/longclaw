@@ -1,3 +1,5 @@
+from wagtail.core.models import Site
+
 import braintree
 from longclaw import settings
 from longclaw.configuration.models import Configuration
@@ -55,7 +57,7 @@ class PaypalVZeroPayment(BasePayment):
         self.gateway = braintree.BraintreeGateway(access_token=settings.VZERO_ACCESS_TOKEN)
 
     def create_payment(self, request, amount, description=''):
-        config = Configuration.for_site(request.site)
+        config = Configuration.for_site(Site.find_for_request(request) )
         nonce = request.POST.get('payment_method_nonce')
         result = self.gateway.transaction.sale({
             "amount": str(amount),
