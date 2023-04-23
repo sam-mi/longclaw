@@ -2,8 +2,7 @@ from decimal import Decimal
 from django.utils.module_loading import import_string
 from ipware.ip import get_client_ip
 from django.utils import timezone
-from ipware.ip import get_real_ip
-from wagtail.core.models import Site
+from wagtail.models import Site
 
 from longclaw.basket.utils import get_basket_items, destroy_basket
 from longclaw.shipping.utils import get_shipping_cost

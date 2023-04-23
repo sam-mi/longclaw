@@ -11,7 +11,7 @@ from typedmodels.models import TypedModel
 from longclaw.basket.models import BasketItem
 from longclaw.basket.signals import basket_modified
 # from polymorphic.models import PolymorphicModel
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.panels import FieldPanel
 
 from ..serializers.locations import AddressSerializer
 from ..signals import address_modified
