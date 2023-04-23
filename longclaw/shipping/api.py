@@ -2,7 +2,7 @@ from django.db.models import Q
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
-from wagtail.core.models import Site
+from wagtail.models import Site
 
 from longclaw.shipping import models, utils, serializers
 from longclaw.configuration.models import Configuration

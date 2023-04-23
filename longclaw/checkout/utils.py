@@ -1,5 +1,6 @@
 from decimal import Decimal
 from django.utils.module_loading import import_string
+from ipware.ip import get_client_ip
 from django.utils import timezone
 from ipware.ip import get_real_ip
 from wagtail.core.models import Site
@@ -63,7 +64,7 @@ def create_order(email,
     else:
         shipping_country = shipping_address.country
 
-    ip_address = get_real_ip(request)
+    ip_address = get_client_ip(request)
     if shipping_country and shipping_option:
         site_settings = Configuration.for_site(Site.find_for_request(request) )
         shipping_rate = get_shipping_cost(

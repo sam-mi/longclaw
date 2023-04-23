@@ -1,6 +1,6 @@
 import math
 
-from wagtail.core.models import Site
+from wagtail.models import Site
 
 import stripe
 from longclaw.settings import STRIPE_SECRET

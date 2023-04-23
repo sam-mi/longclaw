@@ -72,8 +72,7 @@ from django_extensions.db.fields import AutoSlugField
 from modelcluster.fields import ParentalKey
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel
 from longclaw.products.models import ProductVariantBase, ProductBase
 
 class ProductIndex(Page):
@@ -122,7 +121,7 @@ class ProductImage(Orderable):
     caption = models.CharField(blank=True, max_length=255)
 
     panels = [
-        ImageChooserPanel('image'),
+        FieldPanel('image'),
         FieldPanel('caption')
     ]
 ```
