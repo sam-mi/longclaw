@@ -5,20 +5,20 @@ from django.contrib import admin
 from search import views as search_views
 
 from wagtail.admin import urls as wagtailadmin_urls
-from wagtail.core import urls as wagtail_urls
+from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from longclaw import urls as longclaw_urls
 
 urlpatterns = [
-    url(r'^django-admin/', admin.site.urls),
+    path(r'^django-admin/', admin.site.urls),
 
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
+    path(r'^admin/', include(wagtailadmin_urls)),
+    path(r'^documents/', include(wagtaildocs_urls)),
 
-    url(r'^search/$', search_views.search, name='search'),
+    path(r'^search/$', search_views.search, name='search'),
 
-    url(r'', include(longclaw_urls)),
-    url(r'', include(wagtail_urls))
+    path(r'', include(longclaw_urls)),
+    path(r'', include(wagtail_urls))
 ]
 
 
