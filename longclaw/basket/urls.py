@@ -23,20 +23,20 @@ total_items = api.BasketViewSet.as_view({
 
 urlpatterns = [
 
-    path(API_URL_PREFIX + r'basket/$',
+    path(API_URL_PREFIX + 'basket/',
         basket_list,
         name='longclaw_basket_list'),
-    path(API_URL_PREFIX + r'basket/count/$',
+    path(API_URL_PREFIX + 'basket/count/',
         total_items,
         name="longclaw_basket_total_items"),
-    path(API_URL_PREFIX + r'basket/(?P<variant_id>[0-9]+)/$',
+    path(API_URL_PREFIX + 'basket/<int:variant_id>/',
         basket_detail,
         name='longclaw_basket_detail'),
-    path(API_URL_PREFIX + r'basket/(?P<variant_id>[0-9]+)/count/$',
+    path(API_URL_PREFIX + 'basket/<int:variant_id>/count/',
         item_count,
         name='longclaw_basket_item_count'),
 
-    path(r'basket/$',
+    path('basket/',
         views.BasketView.as_view(),
         name="longclaw_basket")
 ]

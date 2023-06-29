@@ -91,7 +91,7 @@ setup(
         'wagtail>=2.12.3',
         'django-countries>=7.1',
         'django-extensions>=2.2.1',
-        'djangorestframework>=3.10.3',
+        'djangorestframework>=3.11.2',
         'django-ipware>=2.1.0',
         'django-typed-models>=0.10.0',
     ],
