@@ -88,12 +88,14 @@ class LongclawStatsPanel(SummaryItem):
 def add_longclaw_summary_items(request, items):
 
     # We are going to replace everything with our own items
-    items[:] = []
-    items.extend([
-        OutstandingOrders(request),
-        ProductCount(request),
-        MonthlySales(request)
-    ])
+    if settings.LONGCLAW_OVERRIDE_SUMMARY_ITEMS:
+        items[:] = []
+    if settings.LONGCLAW_INCLUDE_SUMMARY_ITEMS:
+        items.extend([
+            OutstandingOrders(request),
+            ProductCount(request),
+            MonthlySales(request)
+        ])
 
 @hooks.register('construct_homepage_panels')
 def add_stats_panel(request, panels):
