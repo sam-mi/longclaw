@@ -8,12 +8,13 @@ from longclaw.stats import stats
 from longclaw.configuration.models import Configuration
 from longclaw.utils import ProductVariant, maybe_get_product_model
 
+from longclaw import settings
 
 class LongclawSummaryItem(SummaryItem):
     order = 10
     template_name = 'stats/summary_item.html'
 
-    def get_context(self):
+    def get_context_data(self, parent_context=None):
         return {
             'total': 0,
             'text': '',
@@ -23,7 +24,7 @@ class LongclawSummaryItem(SummaryItem):
 
 class OutstandingOrders(LongclawSummaryItem):
     order = 10
-    def get_context(self):
+    def get_context_data(self, parent_context=None):
         orders = Order.objects.filter(status=Order.SUBMITTED)
         return {
             'total': orders.count(),
@@ -34,7 +35,7 @@ class OutstandingOrders(LongclawSummaryItem):
 
 class ProductCount(LongclawSummaryItem):
     order = 20
-    def get_context(self):
+    def get_context_data(self, parent_context=None):
         product_model = maybe_get_product_model()
         if product_model:
             count = product_model.objects.all().count()
@@ -49,7 +50,7 @@ class ProductCount(LongclawSummaryItem):
 
 class MonthlySales(LongclawSummaryItem):
     order = 30
-    def get_context(self):
+    def get_context_data(self, parent_context=None):
         settings = Configuration.for_site(Site.find_for_request(self.request) )
         sales = stats.sales_for_time_period(*stats.current_month())
         return {
@@ -63,7 +64,7 @@ class MonthlySales(LongclawSummaryItem):
 class LongclawStatsPanel(SummaryItem):
     order = 110
     template_name = 'stats/stats_panel.html'
-    def get_context(self):
+    def get_context_data(self, parent_context=None):
         month_start, month_end = stats.current_month()
         daily_sales = stats.daily_sales(month_start, month_end)
         labels = [(month_start + datetime.timedelta(days=x)).strftime('%Y-%m-%d')
