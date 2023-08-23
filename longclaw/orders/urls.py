@@ -15,22 +15,22 @@ refund_order = api.OrderViewSet.as_view({
     'post': 'refund_order'
 })
 
-PREFIX = r'^{}order/'.format(API_URL_PREFIX)
+PREFIX = f'{API_URL_PREFIX}order/'
 urlpatterns = [
     path(
-        PREFIX + r'(?P<pk>[0-9]+)/$',
+        PREFIX + '<int:pk>/', # r'(?P<pk>[0-9]+)/$',
         orders,
         name='longclaw_orders'
     ),
 
     path(
-        PREFIX + r'(?P<pk>[0-9]+)/fulfill/$',
+        PREFIX + '<int:pk>/fulfil/', #+ r'(?P<pk>[0-9]+)/fulfill/$',
         fulfill_order,
         name='longclaw_fulfill_order'
     ),
 
     path(
-        PREFIX + r'(?P<pk>[0-9]+)/refund/$',
+        PREFIX + '<int:pk>/refund/', #+ r'(?P<pk>[0-9]+)/refund/$',
         refund_order,
         name='longclaw_refund_order'
     )
