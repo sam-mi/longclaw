@@ -36,10 +36,10 @@
 <script>
   var ctx = document.getElementById("daily-sales");
   var data = {
-    labels: {{ labels|safe }},
+    labels: "{{ labels|safe|default:"daily Sales" }}",
   datasets: [
     {
-      data: {{ daily_income }}
+      data: {{ daily_income|default:"[]" }}
       }
   ]
   };
@@ -73,10 +73,10 @@
 
   var ctx_products = document.getElementById("popular-products");
   var data = {
-    labels: {{ product_labels|safe }},
+    labels: "{{ product_labels|safe|default:'Popular Products' }}",
     datasets: [
       {
-        data: {{ sales_volume }}
+        data: {{ sales_volume|default:"[]" }}
       }
     ]
   };
