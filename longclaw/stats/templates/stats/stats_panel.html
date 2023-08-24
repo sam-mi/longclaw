@@ -1,15 +1,33 @@
 {% load i18n wagtailadmin_tags %}
 
-<section class="panel nice-padding">
+<section id="LongclawStats" class="panel nice-padding clearfix"  aria-labelledby="longclaw-stats"  aria-controls="LongclawStatsContent">
 
-  <div class="col6">
-    <canvas id="daily-sales" width="100" height="75"></canvas>
-    <br>
-  </div>
+  {% if heading %}
+    <div id="LongclawStatsHeader" class="w-panel__header">
+  <a class="w-panel__anchor w-panel__anchor--prefix" href="#{{ panel_id }}" data-panel-anchor aria-labelledby="LongclawStatsHeader">
+      {% icon name="link" classname="w-panel__icon" %}
+  </a>
+  <button class="w-panel__toggle" type="button" aria-label="{% trans 'Toggle section' %}" aria-describedby="LongclawStatsHeader" data-panel-toggle aria-controls="{{ content_id }}" aria-expanded="true">
+      {% firstof icon "arrow-down-big" as icon_name %}
+      {% icon name=icon_name classname="w-panel__icon" %}
+  </button>
 
-  <div class="col6">
-    <canvas id="popular-products" width="100" height="75"></canvas>
-    <br>
+      <h2 class="w-panel__heading">Sales Performance</h2>
+{#      <p>Recent Sales Made through the Store</p>#}
+    </div>
+  {% endif %}
+
+  <div id="LongclawStatsContent" class="flex-row">
+
+    <div class="col6">
+      <canvas id="daily-sales" width="100" height="75" ></canvas>
+      <br>
+    </div>
+
+    <div class="col6">
+      <canvas id="popular-products" width="100" height="75"></canvas>
+      <br>
+    </div>
   </div>
 </section>
 
